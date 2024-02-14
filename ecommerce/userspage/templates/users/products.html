@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+{% block title %}
+  <title>Ecommerce --ALl Products Available</title>
+{% endblock %}
+{% block main_content %}
+  {% include 'users/header.html' %}
+
+  {% comment %}Start of Product section{% endcomment %}
+  <div class="container-fluid" width="200" height="200">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+      {% for item in products %}
+        <div class="col">
+          <div class="card">
+            <img src="/{{ item.product_image }}" class="card-img-top images" alt="{{ item.product_name }}" />
+            <div class="card-body">
+              <h5 class="card-title">{{ item.product_name }}</h5>
+              <h5>Rs{{ item.product_price }}</h5>
+              <a href="/productdetails/{{ item.id }}" class="btn btn-success">View Details</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

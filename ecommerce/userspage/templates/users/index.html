@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+{% block title %}
+  <title>Ecommerce --ALl Products Available</title>
+{% endblock %}
+{% block main_content %}
+  {% include 'users/header.html' %}
+  {% comment %}start of a carousel{% endcomment %}
+  <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="10000">
+        <img src="{% static 'images/1.jpg' %}" class="d-block w-100" alt="..." />
+      </div>
+      <div class="carousel-item" data-bs-interval="2000">
+        <img src="{% static 'images/2.jpg' %}" class="d-block w-100" alt="..." />
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'images/3.jpg' %}" class="d-block w-100" alt="..." />
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  {% comment %}start of product section{% endcomment %}
+
+  <div class="container-fluid">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+      {% for item in products %}
+        <div class="col">
+          <div class="card">
+            <img src="/{{ item.product_image }}" class="card-img-top images" alt="{{ item.product_name }}" />
+            <div class="card-body">
+              <h5 class="card-title">{{ item.product_name }}</h5>
+              <h5>Rs{{ item.product_price }}</h5>
+              <a href="/productdetails/{{ item.id }}" class="btn btn-success">View Details</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  {% comment %}End of Product section{% endcomment %}
+  {% include 'users/footer.html' %}
+{% endblock %}

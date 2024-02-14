@@ -1,0 +1,36 @@
+Django 
+
+MVT Designe 
+M- Model
+V-view  ( All Functions of the project define inside the view )
+T- Templets (UI)
+
+#check the path with enviroment variable in control panel 
+
+# create a django file 
+command--> django-admin startproject ecommerce 
+#run django development server 
+python manage.py runserver
+
+#migrations 
+python manage.py makemigrations
+
+python manage.py migrate
+
+
+#TO create super User 
+
+python manage.py createsuperuser
+
+#to create new app in the project 
+python manage.py startapp  app-name
+
+
+#Migration 
+step-->1 python manage.py makemigrations
+step-->2 Python manage.py migrate
+
+
+#if emmet does not work in vs Django 
+==> open setting.json  and paste this code
+==>"emmet.includeLanguages": {"django-html":"html"},

@@ -1,0 +1,50 @@
+{% extends 'admins/adminlayouts.html' %}
+{% load static %}
+
+{% block title %}
+  <title>Product</title>
+{% endblock %}
+{% block main_content %}
+  <div class="container">
+    <div class="container mt-5">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-10">
+          {% for msg in messages %}
+            {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+              <div class="alert alert-success">{{ msg }}</div>
+            {% endif %} {% if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+              <div class="alert alert-danger">{{ msg }}</div>
+            {% endif %}
+          {% endfor %}
+          <table class="table table-bordered border-dark table-striped">
+            <tr>
+              <th>Product Name</th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th>Product Description</th>
+              <th>Image</th>
+              <th>Category</th>
+              <th>Action</th>
+            </tr>
+            {% for item in products %}
+              <tr>
+                <td>{{ item.product_name }}</td>
+                <td>{{ item.product_price }}</td>
+                <td>{{ item.stock }}</td>
+                <td>{{ item.product_description }}</td>
+                <td>
+                  <img src="/{{ item.product_image }}" width="100px" />
+                </td>
+                <td>{{ item.Category.category_name }}</td>
+                <td>
+                  <a href="/ptoduct/updateproduct/{{ item.id }}" class="btn btn-primary">Edit</a>
+                  <a href="/product/deleteproduct/{{ item.id }}" class="btn btn-danger" onClick="return confirm ('Are you sure you want to delete ?')">Delete</a>
+                </td>
+              </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

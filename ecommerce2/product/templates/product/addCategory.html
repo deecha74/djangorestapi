@@ -1,0 +1,33 @@
+{% extends 'layouts.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+  <title>Add Category Form</title>
+{% endblock %}
+
+{% block main_content %}
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <h1 class="row d-flex justify-content-center my-3">Add Products Form</h1>
+
+      <div class="col-md-5">
+        {% for msg in messages %}
+          {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            <div class="alert alert-success">{{ msg }}</div>
+          {% endif %}
+          {% if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            <div class="alert alert-success">{{ msg }}</div>
+          {% endif %}
+        {% endfor %}
+        <form action="" method="POST" class="shadow p-3">
+          {% csrf_token %}
+          {{ forms|crispy }}
+          <div class="mt-3">
+            <input type="submit" class="btb btn-primary" value="Add Category" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
